@@ -16,7 +16,7 @@ val WIDTH = 100.dp
 fun ReproduceOffsetBug() {
     Column {
         CheckVisibility("Visible", -WIDTH)
-        CheckVisibility("Not visible", -WIDTH - 1.dp) // todo +1 changes visibility on Desktop
+        CheckVisibility("Not visible on Desktop", -WIDTH - 1.dp) // todo +1 changes visibility on Desktop
     }
 }
 @Composable
@@ -29,6 +29,6 @@ fun CheckVisibility(label: String, offsetX: Dp) {
             .offset { offsetPx } // todo offset with lambda work's BAD
 //            .offset(offsetX) // offset with arguments works GOOD
     ) {
-        Text(label, Modifier.offset(WIDTH).background(Color.Blue))
+        Text(label, Modifier.offset(WIDTH).background(Color.LightGray))
     }
 }
