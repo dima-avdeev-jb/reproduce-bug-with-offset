@@ -1,6 +1,6 @@
 package com.example.android
 
-import com.example.common.App
+import com.example.common.ReproduceOffsetBug
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                App()
+                ReproduceOffsetBug()
             }
         }
     }

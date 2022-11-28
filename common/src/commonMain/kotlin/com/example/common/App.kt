@@ -6,66 +6,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.DpOffset
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
 
-@Composable
-fun App() {
-    ReproduceOffsetBug()
-}
-
+val WIDTH = 100.dp
 @Composable
 fun ReproduceOffsetBug() {
-    var offsetGood by remember { mutableStateOf(DpOffset.Zero) }
-    var offsetBad by remember { mutableStateOf(IntOffset.Zero) }
-
-    LaunchedEffect(Unit) {
-        repeat(200) {
-            delay(10)
-            offsetGood -= DpOffset(10.dp, 0.dp)
-            offsetBad -= IntOffset(20, 0)
-        }
-    }
-
-    Column(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp)
-                .background(Color.Red)
-                .offset(offsetGood.x, offsetGood.y)
-                .background(Color.Blue)
-        ) {
-            repeat(20) {
-                Text(
-                    text = "$it",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .offset(100.dp * it, 0.dp)
-                        .background(Color.Green),
-                )
-            }
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp)
-                .background(Color.Red)
-                .offset { offsetBad }
-                .background(Color.Blue)
-        ) {
-            repeat(20) {
-                Text(
-                    text = "$it",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .offset(100.dp * it, 0.dp)
-                        .background(Color.Green),
-                )
-            }
-        }
+    Column {
+        CheckVisibility("Visible", -WIDTH)
+        CheckVisibility("Not visible", -WIDTH - 1.dp) // todo +1 changes visibility on Desktop
     }
 }
-
+@Composable
+fun CheckVisibility(label: String, offsetX: Dp) {
+    val offsetPx = with(LocalDensity.current) {
+        IntOffset(offsetX.toPx().toInt(), 0)
+    }
+    Box(
+        Modifier.size(WIDTH)
+            .offset { offsetPx } // todo offset with lambda work's BAD
+//            .offset(offsetX) // offset with arguments works GOOD
+    ) {
+        Text(label, Modifier.offset(WIDTH).background(Color.Blue))
+    }
+}
