@@ -1,23 +1,19 @@
+package com.example.common
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
 import kotlinx.coroutines.delay
 
-fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
-        ReproduceOffsetBug()
-    }
+@Composable
+fun App() {
+    ReproduceOffsetBug()
 }
 
 @Composable
@@ -72,3 +68,4 @@ fun ReproduceOffsetBug() {
         }
     }
 }
+
