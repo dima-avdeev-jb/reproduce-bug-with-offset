@@ -6,5 +6,6 @@ https://github.com/JetBrains/compose-jb/issues/2198
  - On Desktop second label not shown.  
 ![desktop.png](desktop.png)
 
+Look at file [ReproduceOffsetBug.kt](common%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Fexample%2Fcommon%2FReproduceOffsetBug.kt)  
 `./gradlew desktop:run`
-Look at file [ReproduceOffsetBug.kt](common%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Fexample%2Fcommon%2FReproduceOffsetBug.kt)
+
