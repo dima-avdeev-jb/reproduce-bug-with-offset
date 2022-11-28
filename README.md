@@ -7,4 +7,4 @@ https://github.com/JetBrains/compose-jb/issues/2198
 ![desktop.png](desktop.png)
 
 `./gradlew desktop:run`
-
+Look at file [ReproduceOffsetBug.kt](common%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Fexample%2Fcommon%2FReproduceOffsetBug.kt)
